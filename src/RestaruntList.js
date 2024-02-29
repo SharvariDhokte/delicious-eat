@@ -23,9 +23,6 @@ import { WechatOutlined } from "@ant-design/icons";
 import ActionProvider from "./chatbot/ActionProvider";
 import MessageParser from "./chatbot/MessageParser";
 import config from "./chatbot/config";
-import { OpenAI } from "@langchain/openai";
-import { JsonSpec } from "langchain/tools";
-import { JsonToolkit, createJsonAgent } from "langchain/agents";
 const { Header, Content, Footer } = Layout;
 
 const getRateCount = (array) => {
