@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/delicious-eat/static/css/main.469ff908.css",
+    "main.js": "/delicious-eat/static/js/main.15047f74.js",
+    "static/js/787.615ada5d.chunk.js": "/delicious-eat/static/js/787.615ada5d.chunk.js",
+    "index.html": "/delicious-eat/index.html",
+    "main.469ff908.css.map": "/delicious-eat/static/css/main.469ff908.css.map",
+    "main.15047f74.js.map": "/delicious-eat/static/js/main.15047f74.js.map",
+    "787.615ada5d.chunk.js.map": "/delicious-eat/static/js/787.615ada5d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.469ff908.css",
+    "static/js/main.15047f74.js"
+  ]
+}
