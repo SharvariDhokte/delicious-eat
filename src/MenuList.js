@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Typography, theme, Card, Avatar, List, Rate } from "antd";
+import { Layout, Typography, theme, Card, Avatar, List, Rate,FloatButton,Drawer } from "antd";
 import { db } from "./firebase";
 import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { CloseOutlined } from "@ant-design/icons";
+import { WechatOutlined } from "@ant-design/icons";
 import { average } from "average-rating";
 import RateUs from "./RateUs";
+import Chatbot from "react-chatbot-kit";
+import ActionProvider from "./chatbot/ActionProvider";
+import MessageParser from "./chatbot/MessageParser";
+import config from "./chatbot/config";
 const { Header, Content, Footer } = Layout;
 
 const getRateCount = (array) => {
@@ -19,6 +24,15 @@ const App = (props) => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const [rlist, setrlist] = useState();
+  const [openChatbot, setOpenChatbot] = useState(false);
+
+
+  const showChatbot = () => {
+    setOpenChatbot(true);
+  };
+  const closChatbot = () => {
+    setOpenChatbot(false);
+  };
 
   useEffect(() => {
     if (selected?.id) {
@@ -39,6 +53,9 @@ const App = (props) => {
     setRateMenu(item)
     setRateModalOpen(true)
   }
+
+
+
 
   return (
     <>
@@ -76,6 +93,31 @@ const App = (props) => {
             padding: "0 48px",
           }}
         >
+          <Drawer
+              title="Basic Drawer"
+              onClose={closChatbot}
+              open={openChatbot}
+              style={{
+                display:'flex',
+                justifyContent:'center',
+                alignItems:'center'
+              }}
+              styles={{
+                header:{
+                  display:'none'
+                },
+                footer:{
+                  display:'none'
+                }
+              }}
+            >
+              
+              <Chatbot
+                config={config}
+                actionProvider={({createChatBotMessage, setState, children})=>ActionProvider({createChatBotMessage, setState, children,menuId: selected?.id})}
+                messageParser={MessageParser}
+              />
+            </Drawer>
           <div
             style={{
               padding: 24,
@@ -128,6 +170,12 @@ const App = (props) => {
         >
           DeliciousFood ©{new Date().getFullYear()} Created by SharvariDhokte
         </Footer>
+        <FloatButton
+            type="primary"
+            style={{ height: "60px", width: "60px" }}
+            icon={<WechatOutlined style={{ fontSize: 20 }} />}
+            onClick={() => showChatbot()}
+          />
       </Layout>
     </>
   );
